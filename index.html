@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Founder's Map</title>
+    <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
     <header>
-      <h4>Founders Map</h4>
+      <h4 class="title">Founders Map</h4>
     </header>
     <div class="container">
       <form id="generator">
         <label for="foundry">Please Enter your data</label>
-        <textarea id="foundry" class="form-control" rows="3" placeholder="Please Enter your data"></textarea>
+        <textarea id="data" name="data" class="form-control" rows="3" placeholder="Please Enter your data"></textarea>
         <label for="separator">What separator have you used for your data ?</label>
-        <select id="separator" class="form-control">
+        <select id="separator" name="separator" class="form-control">
           <option value="," selected>Comma(,)</option>
           <option value=";">Semicolon(;)</option>
           <option value="tab">Tab</option>
@@ -23,6 +24,8 @@
     <footer>
       <p>Created for Founder's map by Varun Pal</p>
     </footer>
+    <script type="text/javascript" src="scripts/utils.js"></script>
+    <script type="text/javascript" src="scripts/foundry.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
   </body>
 </html>
