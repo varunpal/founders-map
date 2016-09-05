@@ -20,21 +20,31 @@
       isHeader = index === 0,
       context = this;
     data.forEach(function (item) {
-      var column = context.renderColumn(item, index);
+      var column = context.renderCell(item, index);
       row.appendChild(column);
     });
     return row;
   }
 
-  StartupTable.prototype.renderColumn = function (data, rowIndex) {
-    var column = null;
+  StartupTable.prototype.renderCell = function (data, rowIndex) {
+    var cell = null,
+      content = null,
+      imageExpression = /\.(jpg|png|jpeg)$/,
+      isImage = imageExpression.test(data);
     if (rowIndex === 0) {
-      column = document.createElement('th');
+      cell = document.createElement('th');
     } else {
-      column = document.createElement('td');
+      cell = document.createElement('td');
     }
-    column.textContent = data;
-    return column;
+    if (isImage) {
+      content = document.createElement('img');
+      content.src = data;
+      content.className = 'thumb';
+      cell.appendChild(content);
+    } else {
+      cell.textContent = data;
+    }
+    return cell;
   }
 
   window.StartupTable = StartupTable;
