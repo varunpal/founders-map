@@ -11,6 +11,10 @@
       event.preventDefault();
       var data = event.target.data.value,
         separator = event.target.separator.value;
+      if (!data.trim()) {
+        alert('Please enter valid csv data');
+        return;
+      } 
       context.data = window.utils.parse(data, separator);
       context.separator = separator;
       context.table.render(context.data);

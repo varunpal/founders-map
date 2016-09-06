@@ -10,15 +10,23 @@
     </header>
     <div class="container">
       <form id="generator">
-        <label for="foundry">Please Enter your data</label>
-        <textarea id="data" name="data" class="form-control" rows="3" placeholder="Please Enter your data"></textarea>
-        <label for="separator">What separator have you used for your data ?</label>
-        <select id="separator" name="separator" class="form-control">
-          <option value="," selected>Comma(,)</option>
-          <option value=";">Semicolon(;)</option>
-          <option value="tab">Tab</option>
-        </select>
-        <input type="submit" value="Create Map" />
+        <div class="section">
+          <textarea
+            id="data"
+            name="data"
+            class="csv-input"
+            rows="3"
+            placeholder="Enter your CSV data here"></textarea>
+        </div>
+        <div class="section">
+          <label for="separator">What separator have you used for your data ?</label>
+          <select id="separator" name="separator" class="form-control">
+            <option value="," selected>Comma(,)</option>
+            <option value=";">Semicolon(;)</option>
+            <option value="tab">Tab</option>
+          </select>
+        </div>
+        <input class="button" type="submit" value="Create Map" />
       </form>
       <div id="tableContainer"></div>
     </div>
