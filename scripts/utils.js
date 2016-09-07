@@ -7,5 +7,10 @@ window.utils = {
       return columns;
     });
     return data;
+  },
+
+  isImage: function (url) {
+    var imageExpression = /\.(jpg|png|jpeg)$/;
+    return imageExpression.test(url);
   }
 }

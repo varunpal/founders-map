@@ -20,7 +20,7 @@ header .title {
   padding: 20px;
 }
 
-textarea {
+textarea, input[type="text"] {
   border: 1px solid #d5d6d9;
   padding: 10px;
   color: #444;
@@ -38,7 +38,7 @@ textarea:hover, select:hover {
 }
 
 select {
-  height: 30px;
+  height: 37px;
   min-width: 100px;
   padding: 6px 12px;
   font-size: 14px;
