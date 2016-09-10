@@ -3,6 +3,7 @@
     this.data = null;
     this.separator = null;
     this.table = new window.StartupTable();
+    this.map = new window.FoundersMap();
   }
   Foundry.prototype.setup = function () {
     var generator = document.getElementById('generator'),
@@ -15,9 +16,10 @@
         alert('Please enter valid csv data');
         return;
       } 
-      context.data = window.utils.parse(data, separator);
+      context.data = window.utils.parse(data.trim(), separator);
       context.separator = separator;
       context.table.render(context.data);
+      context.map.init(context.data);
       console.log(window.utils.parse(data, separator), separator);
     });
   }

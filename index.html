@@ -45,12 +45,35 @@
         </details>
         <table id="startupTable"></table>
       </div>
+      <div id="mapContainer">
+        <form id="mapOptions">
+          <label for="latitude">Latitude</label>
+          <select id="latitude"></select>
+
+          <label for="longitude">Longitude</label>
+          <select id="longitude"></select>
+
+          <label for="markerTitle">Select Marker Title</label>
+          <select id="markerTitle"></select>
+
+          <label>Hide Rows</label>
+          <input type="submit" value="Draw Map" />
+        </form>
+        <div id="map"></div>
+      </div>
     </div>
     <footer>
       <p>Created for Founder's map by Varun Pal</p>
     </footer>
+    <script type="text/javascript">
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'));
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuReCg3-hWEO6ZdJ8nC7kfe0OwCpQ7Sts&callback=initMap" async defer></script>
     <script type="text/javascript" src="scripts/utils.js"></script>
     <script type="text/javascript" src="scripts/startup-table.js"></script>
+    <script type="text/javascript" src="scripts/map.js"></script>
     <script type="text/javascript" src="scripts/foundry.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
   </body>
