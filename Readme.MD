@@ -20,20 +20,24 @@ The repo structure is as follows:
 ```
 
 ## Build System
-```javascript
-
 1. [GULP](http://gulpjs.com/) has been used as the build system.
 2. The js files have been concatenated and minified.
 3. The Less files have been converted into CSS.
 
 To fire up the build system:
 1. run: 
+```
 npm install
-
+```
 2. To access your local gulp distribution run:
+```
 ./node_modules/.bin/gulp
-
+```
 3. Install gulp globally
+```
 npm install -g gulp
-and run: gulp
+```
+and run:
+```
+gulp
 ```
