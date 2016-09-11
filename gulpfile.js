@@ -29,3 +29,5 @@ gulp.task('styles', function () {
     .pipe(rename('all.min.css'))
     .pipe(gulp.dest('./dist/styles/'));
 });
+
+gulp.task('default', ['scripts', 'styles']);

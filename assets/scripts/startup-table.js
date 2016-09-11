@@ -118,6 +118,12 @@
       content.src = data;
       content.className = 'thumb';
       cell.appendChild(content);
+    } else if(window.utils.isLink(data)) {
+      content = document.createElement('a');
+      content.href = data;
+      content.innerText = 'Link';
+      content.className = 'link';
+      cell.appendChild(content);
     } else {
       cell.textContent = data;
     }

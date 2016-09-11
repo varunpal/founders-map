@@ -15,6 +15,11 @@ window.utils = {
   isImage: function (url) {
     var imageExpression = /\.(jpg|png|jpeg)$/;
     return imageExpression.test(url);
+  },
+
+  isLink: function (str) {
+    var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    return expression.test(str);
   }
 };
 (function (window) {
@@ -136,6 +141,12 @@ window.utils = {
       content = document.createElement('img');
       content.src = data;
       content.className = 'thumb';
+      cell.appendChild(content);
+    } else if(window.utils.isLink(data)) {
+      content = document.createElement('a');
+      content.href = data;
+      content.innerText = 'Link';
+      content.className = 'link';
       cell.appendChild(content);
     } else {
       cell.textContent = data;
