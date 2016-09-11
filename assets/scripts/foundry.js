@@ -18,7 +18,7 @@
         longitude = event.target.longitude.value,
         marker = event.target.marker.value,
         hiddenRows = [],
-        selectedOptions = event.target.hide.selectedOptions,
+        selectedOptions = event.target.hide.selectedOptions || [],
         index;
         for (index = 0; index < selectedOptions.length; index ++) {
           hiddenRows.push(selectedOptions[index].value);
