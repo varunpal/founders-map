@@ -1,9 +1,9 @@
 (function (window) {
   function StartupTable () {
-    var context = this,
-      tableContainer = document.getElementById('tableContainer');
+    var context = this;
+    this.container = document.getElementById('tableContainer');
     this.data = null;
-    tableContainer.addEventListener('change', function (event) {
+    this.container.addEventListener('change', function (event) {
       var index = parseInt(event.target.value, 10);
       switch (event.target.id) {
         case 'sort':
@@ -14,7 +14,7 @@
 
       }
     });
-    tableContainer.addEventListener('keyup', function (event) {
+    this.container.addEventListener('keyup', function (event) {
       if (event.target.id === 'filterText') {
         context.filterData(event.target.value);
       }
@@ -23,6 +23,7 @@
   
   StartupTable.prototype.render = function (data) {
     this.data = data;
+    this.container.className = 'show';
     this.renderSortFilter();
     this.renderTable();
   }
@@ -39,11 +40,12 @@
   }
 
   StartupTable.prototype.sortData = function (index) {
-    var headers = this.data.splice(0, 1);
-    this.data = this.data.sort(function (a, b) {
+    var headers = this.data[0],
+      rows = this.data.slice(1);
+    this.data = rows.sort(function (a, b) {
       return a[index].toUpperCase() > b[index].toUpperCase() ? 1 : -1;
     });
-    this.data = headers.concat(this.data);
+    this.data = [headers].concat(this.data);
     this.renderTable();
   }
 
@@ -120,6 +122,11 @@
       cell.textContent = data;
     }
     return cell;
+  }
+
+  StartupTable.prototype.hide = function () {
+    var container = document.getElementById('tableContainer');
+    container.className = 'hide';
   }
 
   window.StartupTable = StartupTable;

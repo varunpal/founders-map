@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Founder's Map</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
   </head>
   <body>
     <header>
-      <h4 class="title">Founders Map</h4>
+      <h1 class="title">Founders Map</h4>
     </header>
     <div class="container">
       <form id="generator">
+        <h3 class="heading">Hello Founder, Enter your data below</h3>
         <div class="section">
           <textarea
             id="data"
@@ -18,17 +19,34 @@
             rows="3"
             placeholder="Enter your CSV data here"></textarea>
         </div>
-        <div class="section">
-          <label for="separator">What separator have you used for your data ?</label>
+        <div class="section hide separator-section">
+          <label for="separator" class="block">What separator have you used for your data ?</label>
           <select id="separator" name="separator" class="form-control">
-            <option value="," selected>Comma(,)</option>
+            <option selected disabled>Select Separator</option>
+            <option value=",">Comma(,)</option>
             <option value=";">Semicolon(;)</option>
             <option value="tab">Tab</option>
           </select>
         </div>
-        <input class="button" type="submit" value="Create Map" />
+        <div class="section hide format-section">
+          <label class="block">Render data as</label>
+          <label><input type="radio" name="format" value="table" checked /> Table</label>
+          <label><input type="radio" name="format" value="map" /> Map</label>
+        </div>
+        <div class="section map-section hide">
+          <label for="latitude" class="block">Latitude</label>
+          <select id="latitude" name="latitude"></select>
+          <label for="longitude" class="block">Longitude</label>
+          <select id="longitude" name="longitude"></select>
+          <label for="markerTitle" class="block">Select a column for the map marker</label>
+          <select id="markerTitle" name="marker"></select>
+          <label for="hide" class="block">Hide Rows (Use CMD/CTRL + click to select/deselect rows)</label>
+          <select id="hide" name="hide" multiple></select>
+        </div>
+        <input class="button" type="submit" value="Render Data" />
       </form>
-      <div id="tableContainer">
+      <div id="tableContainer" class="hide">
+        <h3 class="heading">Data Table</h3>
         <details>
           <summary>Sort / Filter</summary>
           <div class="sort-filter">
@@ -37,44 +55,31 @@
               <select id="sort"></select>
             </div>
             <div class="filter">
-              <span class="filter-title">Filter</span>
+              <span class="sort-title">Filter</span>
               <select id="filter"></select>
               <input class="filter" type="text" id="filterText" placeholder="Filter Table" />
             </div>
           </div>
         </details>
-        <table id="startupTable"></table>
+        <div class="table">
+          <table id="startupTable"></table>
+        </div>
       </div>
-      <div id="mapContainer">
-        <form id="mapOptions">
-          <label for="latitude">Latitude</label>
-          <select id="latitude"></select>
-
-          <label for="longitude">Longitude</label>
-          <select id="longitude"></select>
-
-          <label for="markerTitle">Select Marker Title</label>
-          <select id="markerTitle"></select>
-
-          <label>Hide Rows</label>
-          <input type="submit" value="Draw Map" />
-        </form>
+      <div id="mapContainer" class="hide">
+        <h3 class="heading">Founder's Map</h3>
         <div id="map"></div>
       </div>
     </div>
-    <footer>
-      <p>Created for Founder's map by Varun Pal</p>
-    </footer>
     <script type="text/javascript">
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'));
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuReCg3-hWEO6ZdJ8nC7kfe0OwCpQ7Sts&callback=initMap" async defer></script>
-    <script type="text/javascript" src="scripts/utils.js"></script>
-    <script type="text/javascript" src="scripts/startup-table.js"></script>
-    <script type="text/javascript" src="scripts/map.js"></script>
-    <script type="text/javascript" src="scripts/foundry.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="assets/scripts/utils.js"></script>
+    <script type="text/javascript" src="assets/scripts/startup-table.js"></script>
+    <script type="text/javascript" src="assets/scripts/map.js"></script>
+    <script type="text/javascript" src="assets/scripts/foundry.js"></script>
+    <script type="text/javascript" src="assets/scripts/index.js"></script>
   </body>
 </html>

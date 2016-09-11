@@ -1,0 +1,16 @@
+{
+  "name": "founders-map",
+  "version": "1.0.0",
+  "description": "Web app for startups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Varun Pal",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}
