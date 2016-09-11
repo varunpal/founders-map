@@ -1,0 +1,17 @@
+@import "colors";
+@import "header";
+@import "common";
+@import "forms";
+@import "table";
+@import "map";
+
+body {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: @dark;
+  box-sizing: border-box;
+  background: @background-gradient-start;
+  background: -webkit-gradient(linear,left top,right bottom,from(@background-gradient-start),to(@background-gradient-end));
+  background: -webkit-linear-gradient(top left, @background-gradient-start, @background-gradient-end);
+  background: linear-gradient(to bottom right, @background-gradient-start, @background-gradient-end);
+}

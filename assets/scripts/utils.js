@@ -13,4 +13,4 @@ window.utils = {
     var imageExpression = /\.(jpg|png|jpeg)$/;
     return imageExpression.test(url);
   }
-}
+};
