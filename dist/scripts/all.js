@@ -2,6 +2,9 @@ window.utils = {
   parse: function (str, separator) {
     var data = null,
       rows = str.split(/\n/g);
+    if (separator === 'tab') {
+      separator = /\t+/g;
+    }
     data = rows.map(function (row) {
       var columns = row.split(separator);
       return columns;
