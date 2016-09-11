@@ -49,3 +49,7 @@ and run:
 ```
 gulp
 ```
+
+## Screenshots
+Screenshots have been put under assets/layout folder
+
