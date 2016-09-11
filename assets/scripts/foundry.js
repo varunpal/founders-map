@@ -40,6 +40,7 @@
       }
     });
     generator.addEventListener('change', function (event) {
+      var format = document.querySelector('.format-section');
       switch (event.target.name) {
         case 'format':
           if (event.target.value === 'map') {
@@ -50,12 +51,6 @@
             context.hideMapOptions();
           }
           break;
-      }
-    });
-    generator.addEventListener('input', function (event) {
-      var separator = document.querySelector('.separator-section'),
-        format = document.querySelector('.format-section');
-      switch (event.target.name) {
         case 'separator':
           format.className = "section format-section";
           context.data = window.utils.parse(context.rawData.trim(), event.target.value);
@@ -64,6 +59,11 @@
             context.setupMapOptions();
           }
           break;
+      }
+    });
+    generator.addEventListener('input', function (event) {
+      var separator = document.querySelector('.separator-section');
+      switch (event.target.name) {
         case 'data':
           context.rawData = event.target.value;
           if (context.separator) {
