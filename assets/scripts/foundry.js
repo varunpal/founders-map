@@ -8,71 +8,76 @@
     this.map = new window.FoundersMap();
   }
   Foundry.prototype.setup = function () {
-    var generator = document.getElementById('generator'),
-      context = this;
-    generator.addEventListener('submit', function (event) {
-      event.preventDefault();
-      var data = event.target.data.value,
-        separator = event.target.separator.value,
-        latitude = event.target.latitude.value,
-        longitude = event.target.longitude.value,
-        marker = event.target.marker.value,
-        hiddenRows = [],
-        selectedOptions = event.target.hide.selectedOptions || [],
-        index;
-        for (index = 0; index < selectedOptions.length; index ++) {
-          hiddenRows.push(selectedOptions[index].value);
+    var generator = document.getElementById('generator');
+    generator.addEventListener('submit', this.onSubmit.bind(this));
+    generator.addEventListener('change', this.onChange.bind(this));
+    generator.addEventListener('input', this.onInput.bind(this));
+  }
+
+  Foundry.prototype.onInput = function (event) {
+    var separator = document.querySelector('.separator-section');
+    switch (event.target.name) {
+      case 'data':
+        this.rawData = event.target.value;
+        if (this.separator) {
+          this.data = window.utils.parse(this.rawData.trim(), this.separator);
         }
-      if (!data.trim()) {
-        alert('Please enter valid csv data');
-        return;
-      } 
-      context.data = window.utils.parse(data.trim(), separator);
-      context.separator = separator;
-      if (context.format === 'table') {
-        context.table.render(context.data);
-        context.map.hide();
-        window.scrollTo(0,document.body.scrollHeight);
-      } else {
-        context.map.init(context.data, latitude, longitude, marker, hiddenRows);
-        context.table.hide();
-        window.scrollTo(0,document.body.scrollHeight);
+        separator.className = 'section separator-section';
+        break;
+    }
+  }
+
+  Foundry.prototype.onChange = function (event) {
+    var format = document.querySelector('.format-section');
+    switch (event.target.name) {
+      case 'format':
+        if (event.target.value === 'map') {
+          this.setupMapOptions();
+          this.format = 'map';
+        } else {
+          this.format = 'table';
+          this.hideMapOptions();
+        }
+        break;
+      case 'separator':
+        format.className = "section format-section";
+        this.data = window.utils.parse(this.rawData.trim(), event.target.value);
+        this.separator = event.target.value;
+        if (this.format === 'map') {
+          this.setupMapOptions();
+        }
+        break;
+    }
+  }
+
+  Foundry.prototype.onSubmit = function (event) {
+    event.preventDefault();
+    var data = event.target.data.value,
+      separator = event.target.separator.value,
+      latitude = event.target.latitude.value,
+      longitude = event.target.longitude.value,
+      marker = event.target.marker.value,
+      hiddenRows = [],
+      selectedOptions = event.target.hide.selectedOptions || [],
+      index;
+      for (index = 0; index < selectedOptions.length; index ++) {
+        hiddenRows.push(selectedOptions[index].value);
       }
-    });
-    generator.addEventListener('change', function (event) {
-      var format = document.querySelector('.format-section');
-      switch (event.target.name) {
-        case 'format':
-          if (event.target.value === 'map') {
-            context.setupMapOptions();
-            context.format = 'map';
-          } else {
-            context.format = 'table';
-            context.hideMapOptions();
-          }
-          break;
-        case 'separator':
-          format.className = "section format-section";
-          context.data = window.utils.parse(context.rawData.trim(), event.target.value);
-          context.separator = event.target.value;
-          if (context.format === 'map') {
-            context.setupMapOptions();
-          }
-          break;
-      }
-    });
-    generator.addEventListener('input', function (event) {
-      var separator = document.querySelector('.separator-section');
-      switch (event.target.name) {
-        case 'data':
-          context.rawData = event.target.value;
-          if (context.separator) {
-            context.data = window.utils.parse(context.rawData.trim(), context.separator);
-          }
-          separator.className = 'section separator-section';
-          break;
-      }
-    });
+    if (!data.trim()) {
+      alert('Please enter valid csv data');
+      return;
+    } 
+    this.data = window.utils.parse(data.trim(), separator);
+    this.separator = separator;
+    if (this.format === 'table') {
+      this.table.render(this.data);
+      this.map.hide();
+      window.scrollTo(0,document.body.scrollHeight);
+    } else {
+      this.map.init(this.data, latitude, longitude, marker, hiddenRows);
+      this.table.hide();
+      window.scrollTo(0,document.body.scrollHeight);
+    }
   }
 
   Foundry.prototype.setupMapOptions = function () {
